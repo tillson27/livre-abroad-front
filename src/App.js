@@ -7,7 +7,11 @@ function App() {
     <div>
       <Navbar />
       <Hero />
+      <div style={{ display: 'flex',  justifyContent:'center', alignItems:'center', width: '100%' }}>
+      <div style={{ width: '100%', display: 'flex',  justifyContent:'center', alignItems:'center', marginBottom: '20%' }}>
       <BookSubmission />
+      </div>
+      </div>
     </div>
   );
 }
