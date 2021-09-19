@@ -1,3 +1,5 @@
+<img src="https://user-images.githubusercontent.com/57644937/133934058-04de8b63-54e1-480b-bb09-1265ac9f7fda.png" alt="drawing" width="300"/>
+
 # LivreAbroad Frontend
 
 Do you miss travelling and exploring new places? Discover your next destination!
