@@ -47,8 +47,8 @@ const Navbar = () => {
             <NavbarWrap>
                 <Logo />
                 <Nav>
-                    <NavLink to='/'>HOME</NavLink>
-                    <NavLink to='/'>FUN</NavLink>
+                    <NavLink style={{ padding: 10, color: '#1E96FC', marginRight: '5%' }} to='/'>HOME</NavLink>
+                    <NavLink style={{ padding: 10, backgroundColor: '#1E96FC', color: '#FFFFFF', marginLeft: '5%', borderRadius:20, }} to='/'>Book Now</NavLink>
                 </Nav>
             </NavbarWrap>
         </NavbarContainer>

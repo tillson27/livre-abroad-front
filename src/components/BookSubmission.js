@@ -6,10 +6,17 @@ import Stack from '@mui/material/Stack';
 import ChipInput from 'material-ui-chip-input';
 import { AwesomeButtonProgress } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
+import Box from '@mui/material/Box';
+import Popup from 'react-popup';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
+
+
 
 export default function BookSubmission() {
     const [yourChips, setYourChips] = useState([])
     const [disableButton, setDisableButton] = useState(true)
+ 
     function handleAddChip(chip) {
         setYourChips(oldArray => [...oldArray, chip]);
         if (disableButton == true) {
@@ -30,31 +37,42 @@ export default function BookSubmission() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 book_name: yourChips,
-                id: '',
-                user_id: '4175c756-1fcc-4b13-8755-6fd7e48d323c'
+                id: 'be451d2b-f5e1-4786-9846-7112870677c3',
+                user_id: '97763bfb-026b-4053-b471-156098212576'
             })
         };
         fetch('http://localhost:8000/books/', requestOptions)
             .then(response => response)
-            .then(data => next());
+            .then(data => {
+                fetch('http://localhost:8000/books/97763bfb-026b-4053-b471-156098212576/')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    localStorage.setItem('location', data);
+                    next();
+                });
+            });
     }
     return (
-        <div style={{ display: 'flex', width: '50%', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', width: '70%', flexDirection: 'column', height: '100%' }}>
             <ChipInput
                 value={yourChips}
                 onAdd={(chip) => handleAddChip(chip)}
                 onDelete={(chip, index) => handleDeleteChip(chip, index)}
+                placeholder="Book Title"
             />
-            <div style = {{ marginTop: '10%', display: 'flex',  justifyContent:'center', alignItems:'center' }}>
-            <AwesomeButtonProgress
-                disabled={disableButton}
-                type="secondary"
-                size="medium"
-                action={(element, next) => doSomethingThenCall(next)}
-            >
-                Plan my Trip
+            <div style = {{ marginTop: '20%', display: 'flex',  justifyContent:'center', alignItems:'center' }}>
+                <AwesomeButtonProgress
+                    disabled={disableButton}
+                    type="secondary"
+                    size="medium"
+                    button-secondary-border="red"
+                    action={(element, next) => doSomethingThenCall(next)}
+                >
+                    Plan my Trip
             </AwesomeButtonProgress>
             </div>
+
         </div>
     );
 }
